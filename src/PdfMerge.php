@@ -15,9 +15,11 @@ class PdfMerge
      */
     private $files = [];
     private $pdf;
+    private $headerConfig;
+    private $footerConfig;
 
     /**
-     * Passed parameters overrides settings for header and footer by calling tcpdf.php methods:
+     * Passed parameters override settings for header and footer by calling tcpdf.php methods:
      * setHeaderData($ln='', $lw=0, $ht='', $hs='', $tc=array(0,0,0), $lc=array(0,0,0))
      * setFooterData($tc=array(0,0,0), $lc=array(0,0,0))
      * For more info about tcpdf, please read https://tcpdf.org/docs/
@@ -25,7 +27,9 @@ class PdfMerge
     public function __construct(?HeaderConfig $headerConfig = null, ?FooterConfig $footerConfig = null)
     {
         $this->pdf = new TCPDI();
-        $this->configureHeaderAndFooter($headerConfig, $footerConfig);
+        $this->headerConfig = $headerConfig;
+        $this->footerConfig = $footerConfig;
+        $this->configureHeaderAndFooter();
     }
 
     public function getPdf(): TCPDI
@@ -85,24 +89,24 @@ class PdfMerge
         return $this->pdf->Output($outputFilename, $destination);
     }
 
-    private function configureHeaderAndFooter(?HeaderConfig $headerConfig, ?FooterConfig $footerConfig): void
+    private function configureHeaderAndFooter(): void
     {
-        if ($headerConfig) {
+        if ($this->headerConfig) {
             $this->pdf->setHeaderData(
-                $headerConfig->imagePath(),
-                $headerConfig->logoWidthMM(),
-                $headerConfig->title(),
-                $headerConfig->text(),
-                $headerConfig->textColor()->toArray(),
-                $headerConfig->lineColor()->toArray(),
+                $this->headerConfig->imagePath(),
+                $this->headerConfig->logoWidthMM(),
+                $this->headerConfig->title(),
+                $this->headerConfig->text(),
+                $this->headerConfig->textColor()->toArray(),
+                $this->headerConfig->lineColor()->toArray()
             );
         } else {
             $this->pdf->setPrintHeader(false);
         }
 
-        if ($footerConfig) {
-            $this->pdf->setFooterData($footerConfig->textColor()->toArray(), $footerConfig->lineColor()->toArray());
-            $this->pdf->setFooterMargin($footerConfig->margin());
+        if ($this->footerConfig) {
+            $this->pdf->setFooterData($this->footerConfig->textColor()->toArray(), $this->footerConfig->lineColor()->toArray());
+            $this->pdf->setFooterMargin($this->footerConfig->margin());
         } else {
             $this->pdf->setPrintFooter(false);
         }
