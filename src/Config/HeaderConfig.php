@@ -13,12 +13,12 @@ class HeaderConfig
      * @param ?RGB $lineColor RGB array color for line
      */
     public function __construct(
-        private string $imagePath = '',
-        private int $logoWidthMM = 0,
-        private string $title = '',
-        private string $text = '',
-        private ?RGB $textColor = null,
-        private ?RGB $lineColor = null,
+        private $imagePath = '',
+        private $logoWidthMM = 0,
+        private $title = '',
+        private $text = '',
+        private $textColor = null,
+        private $lineColor = null,
     ) {
     }
 
