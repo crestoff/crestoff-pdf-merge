@@ -13,8 +13,8 @@ class PdfMerge
     /**
      * @var array<int, string>
      */
-    private array $files = [];
-    private TCPDI $pdf;
+    private $files = [];
+    private $pdf;
 
     /**
      * Passed parameters overrides settings for header and footer by calling tcpdf.php methods:
