@@ -10,9 +10,9 @@ class FooterConfig
      * @param int $margin minimum distance (in "user units") between footer and bottom page margin
      */
     public function __construct(
-        private ?RGB $textColor = null,
-        private ?RGB $lineColor = null,
-        private int $margin = 0,
+        private $textColor = null,
+        private $lineColor = null,
+        private $margin = 0,
     ) {
     }
 
