@@ -4,8 +4,15 @@ namespace Karriere\PdfMerge\Config;
 
 class RGB
 {
-    public function __construct(private int $red = 0, private int $green = 0, private int $blue = 0)
+    private $red;
+    private $green;
+    private $blue;
+
+    public function __construct(int $red = 0, int $green = 0, int $blue = 0)
     {
+        $this->red = $red;
+        $this->green = $green;
+        $this->blue = $blue;
     }
 
     /**
