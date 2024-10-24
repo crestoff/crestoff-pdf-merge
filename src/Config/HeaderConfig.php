@@ -4,6 +4,13 @@ namespace Karriere\PdfMerge\Config;
 
 class HeaderConfig
 {
+    private $imagePath;
+    private $logoWidthMM;
+    private $title;
+    private $text;
+    private $textColor;
+    private $lineColor;
+
     /**
      * @param string $imagePath header image logo
      * @param int $logoWidthMM header image logo width in mm
@@ -13,13 +20,19 @@ class HeaderConfig
      * @param ?RGB $lineColor RGB array color for line
      */
     public function __construct(
-        private $imagePath = '',
-        private $logoWidthMM = 0,
-        private $title = '',
-        private $text = '',
-        private $textColor = null,
-        private $lineColor = null,
+        $imagePath = '',
+        $logoWidthMM = 0,
+        $title = '',
+        $text = '',
+        $textColor = null,
+        $lineColor = null
     ) {
+        $this->imagePath = $imagePath;
+        $this->logoWidthMM = $logoWidthMM;
+        $this->title = $title;
+        $this->text = $text;
+        $this->textColor = $textColor;
+        $this->lineColor = $lineColor;
     }
 
     public function imagePath(): string
