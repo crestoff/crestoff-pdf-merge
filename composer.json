@@ -1,5 +1,5 @@
 {
-    "name": "karriere/pdf-merge",
+    "name": "crestoff/crestoff-pdf-merge",
     "description": "A wrapper for the TCPDF class that provides an elegant API for merging PDFs. Supports php 7.3",
     "keywords": ["pdf", "merge"],
     "license": "Apache-2.0",
